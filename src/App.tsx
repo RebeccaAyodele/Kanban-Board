@@ -12,16 +12,16 @@ const App = () => {
         <h1 className="text-2xl ml-[2rem] font-bold">Work Board</h1>
         <div className="flex justify-around">
           <Container
-            types="To-Do"
+            state="To-Do"
             heading="No task yet"
             description="Add a new task to get started"
           />
           <Container
-            types="In-Progress"
+            state="In-Progress"
             description="Start working on a task to move it here"
           />
           <Container
-            types="Completed"
+            state="Completed"
             description="Task that are completed will appear here"
           />
         </div>

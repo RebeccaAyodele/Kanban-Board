@@ -1,3 +1,4 @@
+import { useStore } from "../store";
 import profile from "../images/profile.jpg";
 import { DeleteIcon, DragIcon, EditIcon } from "./Icons";
 
@@ -7,8 +8,11 @@ type Props = {
 };
 
 const Card = ({ title, content }: Props) => {
+  const task = useStore((store) =>
+    store.tasks.find((task) => task.title === title)
+  );
   return (
-    <div className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative">
+    <div className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative">{task?.state}
       <div>
         <img src={profile} alt="profile" className="w-6 h-6" />
       </div>
