@@ -1,4 +1,4 @@
-import Card from "./components/Card";
+// import Card from "./components/Card";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
@@ -25,10 +25,10 @@ const App = () => {
             description="Task that are completed will appear here"
           />
         </div>
-        <Card
+        {/* <Card
           title="Design a simple Kanban Board"
           content="Using figma design tool, design a simple kanban board with the following design requirement and minimum components"
-        />
+        /> */}
       </div>
     </div>
   );

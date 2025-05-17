@@ -11,6 +11,9 @@ type Props = {
 
 const Container = ({ state, heading, description }: Props) => {
   const [text, setText] = useState("");
+  const [content, setContent] = useState("");
+  const [type, setType] = useState("Work")
+  const [dueDate, setDueDate] = useState(Date)
   const [open, setOpen] = useState(false);
   const tasks = useStore((store) => store.tasks);
   const filtered = useMemo(
@@ -24,19 +27,36 @@ const Container = ({ state, heading, description }: Props) => {
     <div className="min-h-[706px] w-[28%] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] mt-8 flex flex-col">
       <div className="flex justify-between items-center">
         <h1 className="text-[22px] font-semibold">{state}</h1>
-        <button onClick={() => setOpen(true)}> <AddTaskIcon /></button>
+        <button onClick={() => setOpen(true)}>
+          {" "}
+          <AddTaskIcon />
+        </button>
 
         {open && (
           <div className="absolute w-full h-full top-0 left-0">
-            <div className="bg-blue-300 absolute z-1 p-4 h-screen/2 w-screen/2 left-1/3 top-1/2 translate-x-1/2 translate-y-1/2 flex justify-center items-center">
+            <div className="bg-blue-300 absolute z-1 p-4 h-screen/2 w-screen/2 left-1/3 top-1/2 translate-x-1/2 translate-y-1/2 flex flex-col gap-2 justify-center items-center">
               <input onChange={(e) => setText(e.target.value)} value={text} />
-            <button
-            onClick={() => {
-              addTask(text, state);
-              setText("");
-              setOpen(false);
-            }}
-          >Add</button>
+              <textarea
+                onChange={(e) => setContent(e.target.value)}
+                value={content}
+              />
+              <select onChange={(e) => setType(e.target.value)} value={type} name="type" id="type">
+                <option value="work">Work</option>
+                <option value="school">School</option>
+                <option value="self">Self</option>
+              </select>
+              <input type="date" name="date" id="date" onChange={(e) => setDueDate(e.target.value)} value={dueDate} />
+              <button
+                type="submit"
+                onClick={() => {
+                  addTask(text, content, state, type, dueDate);
+                  setText("");
+                  setType("Work")
+                  setOpen(false);
+                }}
+              >
+                Add
+              </button>
             </div>
           </div>
         )}
@@ -45,11 +65,7 @@ const Container = ({ state, heading, description }: Props) => {
         <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
         <p className="text-gray-500 text-[14px]">{description}</p>
         {filtered.map((task) => (
-          <Card
-            title={task.title}
-            content="Using figma design tool, design a simple kanban board with the following design requirement and minimum components"
-            key={task.title}
-          />
+          <Card title={task.title} content={task.content} type={task.type} key={task.title} dueDate={task.dueDate} />
         ))}
       </div>
     </div>
