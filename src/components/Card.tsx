@@ -6,8 +6,8 @@ import { DeleteIcon, DragIcon, EditIcon } from "./Icons";
 type Props = {
   title: string;
   content: string;
-  type: "Work" | "School" | "Self"
-  dueDate: ReactNode
+  type: "Work" | "School" | "Self";
+  dueDate: ReactNode;
 };
 
 const Card = ({ title, content, type, dueDate }: Props) => {
@@ -15,9 +15,21 @@ const Card = ({ title, content, type, dueDate }: Props) => {
     store.tasks.find((task) => task.title === title)
   );
 
-  const deleteTask = useStore(store => store.deleteTask)
+  const deleteTask = useStore((store) => store.deleteTask);
+  const setDraggedTask = useStore((store) => store.setDraggedTask);
+
   return (
-    <div className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative">
+    <div
+      className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer"
+      draggable
+      onDragStart={() => {
+        if (task?.title) {
+          {
+            setDraggedTask(task?.title);
+          }
+        }
+      }}
+    >
       <div>
         <img src={profile} alt="profile" className="w-6 h-6" />
       </div>
@@ -37,11 +49,15 @@ const Card = ({ title, content, type, dueDate }: Props) => {
           </div>
         </div>
         <div className="flex gap-2">
-          <DragIcon />
+            <DragIcon />
           <EditIcon />
-          <div  onClick={() => {
-            if (task) deleteTask(task.title)
-          }}><DeleteIcon /></div>
+          <div
+            onClick={() => {
+              if (task) deleteTask(task.title);
+            }}
+          >
+            <DeleteIcon />
+          </div>
         </div>
       </div>
     </div>

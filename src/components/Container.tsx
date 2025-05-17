@@ -12,8 +12,8 @@ type Props = {
 const Container = ({ state, heading, description }: Props) => {
   const [text, setText] = useState("");
   const [content, setContent] = useState("");
-  const [type, setType] = useState("Work")
-  const [dueDate, setDueDate] = useState(Date)
+  const [type, setType] = useState("Work");
+  const [dueDate, setDueDate] = useState(Date);
   const [open, setOpen] = useState(false);
   const tasks = useStore((store) => store.tasks);
   const filtered = useMemo(
@@ -22,9 +22,23 @@ const Container = ({ state, heading, description }: Props) => {
   );
 
   const addTask = useStore((store) => store.addTask);
+  const setDraggedTask = useStore((store) => store.setDraggedTask);
+  const draggedTask = useStore((store) => store.draggedTask);
+  const moveTask = useStore((store) => store.moveTask);
 
   return (
-    <div className="min-h-[706px] w-[28%] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] mt-8 flex flex-col">
+    <div
+      className="min-h-[706px] w-[28%] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] mt-8 flex flex-col"
+      onDragOver={(e) => {
+        e.preventDefault();
+      }}
+      onDrop={() => {
+        if (draggedTask) {
+          moveTask(draggedTask, state);
+        }
+        setDraggedTask(null)
+      }}
+    >
       <div className="flex justify-between items-center">
         <h1 className="text-[22px] font-semibold">{state}</h1>
         <button onClick={() => setOpen(true)}>
@@ -40,18 +54,29 @@ const Container = ({ state, heading, description }: Props) => {
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
               />
-              <select onChange={(e) => setType(e.target.value)} value={type} name="type" id="type">
+              <select
+                onChange={(e) => setType(e.target.value)}
+                value={type}
+                name="type"
+                id="type"
+              >
                 <option value="work">Work</option>
                 <option value="school">School</option>
                 <option value="self">Self</option>
               </select>
-              <input type="date" name="date" id="date" onChange={(e) => setDueDate(e.target.value)} value={dueDate} />
+              <input
+                type="date"
+                name="date"
+                id="date"
+                onChange={(e) => setDueDate(e.target.value)}
+                value={dueDate}
+              />
               <button
                 type="submit"
                 onClick={() => {
                   addTask(text, content, state, type, dueDate);
                   setText("");
-                  setType("Work")
+                  setType("Work");
                   setOpen(false);
                 }}
               >
@@ -65,7 +90,13 @@ const Container = ({ state, heading, description }: Props) => {
         <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
         <p className="text-gray-500 text-[14px]">{description}</p>
         {filtered.map((task) => (
-          <Card title={task.title} content={task.content} type={task.type} key={task.title} dueDate={task.dueDate} />
+          <Card
+            title={task.title}
+            content={task.content}
+            type={task.type}
+            key={task.title}
+            dueDate={task.dueDate}
+          />
         ))}
       </div>
     </div>
