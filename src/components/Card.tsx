@@ -1,4 +1,4 @@
-// import { useStore } from "../store";
+import { useStore } from "../store";
 import { ReactNode } from "react";
 import profile from "../images/profile.jpg";
 import { DeleteIcon, DragIcon, EditIcon } from "./Icons";
@@ -11,9 +11,11 @@ type Props = {
 };
 
 const Card = ({ title, content, type, dueDate }: Props) => {
-  // const task = useStore((store) =>
-  //   store.tasks.find((task) => task.title === title)
-  // );
+  const task = useStore((store) =>
+    store.tasks.find((task) => task.title === title)
+  );
+
+  const deleteTask = useStore(store => store.deleteTask)
   return (
     <div className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative">
       <div>
@@ -37,7 +39,9 @@ const Card = ({ title, content, type, dueDate }: Props) => {
         <div className="flex gap-2">
           <DragIcon />
           <EditIcon />
-          <DeleteIcon />
+          <div  onClick={() => {
+            if (task) deleteTask(task.title)
+          }}><DeleteIcon /></div>
         </div>
       </div>
     </div>

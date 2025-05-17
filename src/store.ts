@@ -11,6 +11,7 @@ type Task = {
 type StoreProps = {
     tasks: Task[]
     addTask: (title: string, content: string, state: Task["state"], type: "Work" | "School" | "Self", dueDate: string) => void
+    deleteTask: (title: string) => void
 }
 
 export const useStore = create<StoreProps>((set) => ({
@@ -18,5 +19,9 @@ export const useStore = create<StoreProps>((set) => ({
     addTask: (title, content, state, type, dueDate) => 
       set((store) => ({
         tasks: [...store.tasks, {title, content, state, type, dueDate}]
+      })),
+      deleteTask: (title: string) => 
+      set((store) => ({
+        tasks: store.tasks.filter((task) => task.title !== title)
       }))
 }) )
