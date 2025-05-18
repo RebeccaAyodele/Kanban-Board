@@ -2,6 +2,20 @@ import { AddTaskIcon } from "./Icons";
 import { useMemo, useState } from "react";
 import { useStore } from "../store";
 import Card from "./Card";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+// Schema for form validation
+const schema = z.object({
+  title: z.string().nonempty("Title is required"),
+  content: z.string().nonempty("Description is required"),
+  dueDate: z.string().nonempty("Due date is required"),
+  type: z.string().nonempty("Task type is required"),
+});
+
+// Type for the form values
+type FormProps = z.infer<typeof schema>;
 
 type Props = {
   state: "To-Do" | "In-Progress" | "Completed";
@@ -10,91 +24,121 @@ type Props = {
 };
 
 const Container = ({ state, heading, description }: Props) => {
-  const [text, setText] = useState("");
-  const [content, setContent] = useState("");
-  const [type, setType] = useState("Work");
-  const [dueDate, setDueDate] = useState(Date);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormProps>({
+    defaultValues: {
+      title: "",
+      content: "",
+      dueDate: "",
+      type: "work",
+    },
+    resolver: zodResolver(schema),
+  });
+
   const [open, setOpen] = useState(false);
   const tasks = useStore((store) => store.tasks);
-  const filtered = useMemo(
-    () => tasks.filter((task) => task.state === state),
-    [tasks, state]
-  );
-
   const addTask = useStore((store) => store.addTask);
   const setDraggedTask = useStore((store) => store.setDraggedTask);
   const draggedTask = useStore((store) => store.draggedTask);
   const moveTask = useStore((store) => store.moveTask);
 
+  const filtered = useMemo(
+    () => tasks.filter((task) => task.state === state),
+    [tasks, state]
+  );
+
+  const onSubmit = (data: FormProps) => {
+    addTask(data.title, data.content, state, data.type, data.dueDate);
+    reset();
+    setOpen(false);
+  };
+
   return (
     <div
       className="min-h-[706px] w-[28%] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] mt-8 flex flex-col"
-      onDragOver={(e) => {
-        e.preventDefault();
-      }}
+      onDragOver={(e) => e.preventDefault()}
       onDrop={() => {
-        if (draggedTask) {
-          moveTask(draggedTask, state);
-        }
-        setDraggedTask(null)
+        if (draggedTask) moveTask(draggedTask, state);
+        setDraggedTask(null);
       }}
     >
       <div className="flex justify-between items-center">
         <h1 className="text-[22px] font-semibold">{state}</h1>
         <button onClick={() => setOpen(true)}>
-          {" "}
           <AddTaskIcon />
         </button>
+      </div>
 
-        {open && (
-          <div className="absolute w-full h-full top-0 left-0">
-            <div className="bg-blue-300 absolute z-1 p-4 h-screen/2 w-screen/2 left-1/3 top-1/2 translate-x-1/2 translate-y-1/2 flex flex-col gap-2 justify-center items-center">
-              <input onChange={(e) => setText(e.target.value)} value={text} />
-              <textarea
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
-              />
-              <select
-                onChange={(e) => setType(e.target.value)}
-                value={type}
-                name="type"
-                id="type"
-              >
-                <option value="work">Work</option>
-                <option value="school">School</option>
-                <option value="self">Self</option>
-              </select>
-              <input
-                type="date"
-                name="date"
-                id="date"
-                onChange={(e) => setDueDate(e.target.value)}
-                value={dueDate}
-              />
+      {open && (
+        <div className="absolute w-full h-full top-0 left-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+            className="bg-white shadow-lg p-6 w-[20rem] rounded-[1.5rem] flex flex-col gap-3"
+          >
+            <input
+              {...register("title")}
+              placeholder="Task Title"
+              className="p-2 rounded border"
+            />
+            <p className="text-red-500 text-sm">{errors.title?.message}</p>
+
+            <textarea
+              {...register("content")}
+              placeholder="Task Description"
+              className="p-2 rounded border"
+            />
+            <p className="text-red-500 text-sm">{errors.content?.message}</p>
+
+            <select {...register("type")} className="p-2 rounded border">
+              <option value="work">Work</option>
+              <option value="school">School</option>
+              <option value="self">Self</option>
+            </select>
+            <p className="text-red-500 text-sm">{errors.type?.message}</p>
+
+            <input
+              type="date"
+              {...register("dueDate")}
+              className="p-2 rounded border"
+            />
+            <p className="text-red-500 text-sm">{errors.dueDate?.message}</p>
+
+            <div className="flex justify-between gap-4 mt-2">
               <button
                 type="submit"
-                onClick={() => {
-                  addTask(text, content, state, type, dueDate);
-                  setText("");
-                  setType("Work");
-                  setOpen(false);
-                }}
+                className="bg-blue-600 text-white px-4 py-2 rounded"
               >
-                Add
+                Add Task
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  reset();
+                }}
+                className="bg-gray-400 text-white px-4 py-2 rounded"
+              >
+                Cancel
               </button>
             </div>
-          </div>
-        )}
-      </div>
+          </form>
+        </div>
+      )}
+
       <div className="border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
         <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
         <p className="text-gray-500 text-[14px]">{description}</p>
         {filtered.map((task) => (
           <Card
+            key={task.id}
             title={task.title}
             content={task.content}
             type={task.type}
-            key={task.title}
             dueDate={task.dueDate}
           />
         ))}

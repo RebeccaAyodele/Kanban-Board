@@ -11,12 +11,16 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.0.1",
     "classnames": "^2.5.1",
     "framer-motion": "^12.4.10",
     "heroicons": "^2.2.0",
     "react": "^19.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.4",
+    "react-router-dom": "^7.6.0",
+    "zod": "^3.24.4",
     "zustand": "^5.0.4"
   },
   "devDependencies": {
