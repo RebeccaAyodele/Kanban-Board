@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-// Schema for form validation
 const schema = z.object({
   title: z.string().nonempty("Title is required"),
   content: z.string().nonempty("Description is required"),
@@ -14,7 +13,6 @@ const schema = z.object({
   type: z.string().nonempty("Task type is required"),
 });
 
-// Type for the form values
 type FormProps = z.infer<typeof schema>;
 
 type Props = {
@@ -34,7 +32,7 @@ const Container = ({ state, heading, description }: Props) => {
       title: "",
       content: "",
       dueDate: "",
-      type: "work",
+      type: "Work",
     },
     resolver: zodResolver(schema),
   });
@@ -59,7 +57,7 @@ const Container = ({ state, heading, description }: Props) => {
 
   return (
     <div
-      className="min-h-[706px] w-[28%] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] mt-8 flex flex-col"
+      className="min-h-[43rem] w-[22rem] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] flex flex-col"
       onDragOver={(e) => e.preventDefault()}
       onDrop={() => {
         if (draggedTask) moveTask(draggedTask, state);
@@ -83,18 +81,18 @@ const Container = ({ state, heading, description }: Props) => {
             <input
               {...register("title")}
               placeholder="Task Title"
-              className="p-2 rounded border"
+              className="p-2 rounded border focus:outline-blue-400"
             />
             <p className="text-red-500 text-sm">{errors.title?.message}</p>
 
             <textarea
               {...register("content")}
               placeholder="Task Description"
-              className="p-2 rounded border"
+              className="p-2 rounded border focus:outline-blue-400"
             />
             <p className="text-red-500 text-sm">{errors.content?.message}</p>
 
-            <select {...register("type")} className="p-2 rounded border">
+            <select {...register("type")} className="p-2 rounded border focus:outline-blue-400">
               <option value="work">Work</option>
               <option value="school">School</option>
               <option value="self">Self</option>
@@ -104,14 +102,14 @@ const Container = ({ state, heading, description }: Props) => {
             <input
               type="date"
               {...register("dueDate")}
-              className="p-2 rounded border"
+              className="p-2 rounded border focus:outline-blue-400"
             />
             <p className="text-red-500 text-sm">{errors.dueDate?.message}</p>
 
             <div className="flex justify-between gap-4 mt-2">
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded"
+                className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500"
               >
                 Add Task
               </button>
@@ -121,7 +119,7 @@ const Container = ({ state, heading, description }: Props) => {
                   setOpen(false);
                   reset();
                 }}
-                className="bg-gray-400 text-white px-4 py-2 rounded"
+                className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
               >
                 Cancel
               </button>

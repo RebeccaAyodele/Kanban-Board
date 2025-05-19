@@ -4,7 +4,7 @@ import profile from "../images/profile.jpg"
 
 const Header = () => {
   return (
-    <div className="flex justify-between border-b-2 border-gray-300 px-4 pb-4 font-poppins">
+    <div className="flex fixed w-full justify-between border-b-2 border-gray-300 px-4 pb-4 font-poppins">
       <div className="flex justify-center items-center">
         <img src={logo} alt="Logo" />
         <h1 className="text-2xl font-bold">TaskFlow</h1>

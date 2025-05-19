@@ -1,15 +1,41 @@
-// import Card from "./components/Card";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import useIsMobile from "./components/useIsMobile";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 
 const App = () => {
+  const isMobile = useIsMobile();
+
+  if (isMobile === null) return null;
+
+  if (isMobile) {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/todo" />} />
+          <Route
+            path="/todo"
+            element={<Container state="To-Do" heading="Let's begin!" description="Tasks to be done" />}
+          />
+          <Route
+            path="/in-progress"
+            element={<Container state="In-Progress" heading="Work in Progress" description="Tasks you're working on" />}
+          />
+          <Route
+            path="/completed"
+            element={<Container state="Completed" heading="Well done!" description="Tasks you've finished" />}
+          />
+        </Routes>
+      </Router>
+    )
+  }
   return (
     <div>
       <Header />
       <NavBar />
-      <div className="ml-[16rem] mt-[2rem]">
-        <h1 className="text-2xl ml-[2rem] font-bold">Work Board</h1>
+      <div className="ml-[16rem] mt-28">
+        <h1 className="text-2xl ml-[2rem] mb-6 font-bold">Work Board</h1>
         <div className="flex justify-around">
           <Container
             state="To-Do"
@@ -25,10 +51,6 @@ const App = () => {
             description="Task that are completed will appear here"
           />
         </div>
-        {/* <Card
-          title="Design a simple Kanban Board"
-          content="Using figma design tool, design a simple kanban board with the following design requirement and minimum components"
-        /> */}
       </div>
     </div>
   );

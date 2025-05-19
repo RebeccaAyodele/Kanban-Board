@@ -20,7 +20,7 @@ const Card = ({ title, content, type, dueDate }: Props) => {
 
   return (
     <div
-      className="w-[292px] h-[275px] bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer"
+      className="w-[292px] h-[300px] mb-4 bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer"
       draggable
       onDragStart={() => {
         if (task?.title) {
@@ -30,7 +30,7 @@ const Card = ({ title, content, type, dueDate }: Props) => {
         }
       }}
     >
-      <div>
+      <div className="relative">
         <img src={profile} alt="profile" className="w-6 h-6" />
       </div>
       <div>
@@ -42,10 +42,10 @@ const Card = ({ title, content, type, dueDate }: Props) => {
       <div className="flex justify-between items-center mt-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="bg-green-200 rounded w-[46px] h-[26px] text-center">
+            <div className="bg-green-200 rounded-lg w px-2 py-1 text-center">
               <h3>{type}</h3>
             </div>
-            <p className="text-[8px] font-thin text-gray-500">{dueDate}</p>
+            <p className="text-[9px] font-thin text-gray-600">{dueDate}</p>
           </div>
         </div>
         <div className="flex gap-2">
