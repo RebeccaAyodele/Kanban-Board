@@ -3,7 +3,7 @@ import { DashBoardIcon, Logout, MyBoardsIcon, Notifications, ReportsIcon, Settin
 const NavBar = () => {
   return (
     <div className="flex">
-      <div className="fixed top-0 pt-[8rem] h-screen w-[15rem] border-r-2 border-gray-300 flex flex-col justify-between items-center">
+      <div className= "md:fixed md:top-0 md:pt-[8rem] md:h-screen md:max-w-[15rem] md:border-r-2 md:border-gray-300 md:flex flex-col md:justify-between md:items-center sm:hidden">
         <ul>
           <div className="w-[13.5rem] hover:bg-primary-color hover:rounded-[1rem]">
             <li className="mb-4 flex ml-[2rem] gap-3 items-center h-14">

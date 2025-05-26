@@ -82,7 +82,7 @@ export const MyBoardsIcon = () => {
 
 export const SearchIcon = () => {
   return (
-    <div className="absolute tow-[24px] h-[24px] flex items-center justify-center/3 left-12">
+    <div className="absolute tow-[24px] h-[24px] flex items-center justify-center/3 left-12 top-4">
       <svg
         width="21"
         height="20"

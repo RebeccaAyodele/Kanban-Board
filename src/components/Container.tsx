@@ -38,6 +38,7 @@ const Container = ({ state, heading, description }: Props) => {
   });
 
   const [open, setOpen] = useState(false);
+  const [isDragOver, setIsDragOver] = useState(false);
   const tasks = useStore((store) => store.tasks);
   const addTask = useStore((store) => store.addTask);
   const setDraggedTask = useStore((store) => store.setDraggedTask);
@@ -57,19 +58,58 @@ const Container = ({ state, heading, description }: Props) => {
 
   return (
     <div
-      className="min-h-[43rem] w-[22rem] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] flex flex-col"
-      onDragOver={(e) => e.preventDefault()}
+      className={`min-h-[43rem] w-[22rem] bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] flex flex-col transition-all duration-200 ${
+        isDragOver ? "border-2 border-dotted border-[#81C3FF]" : ""
+      }`}
+      onDragOver={(e) => {
+        e.preventDefault();
+        setIsDragOver(true)
+      }}
+      onDragLeave={() => setIsDragOver(false)}
       onDrop={() => {
         if (draggedTask) moveTask(draggedTask, state);
         setDraggedTask(null);
+        setIsDragOver(false)
       }}
     >
       <div className="flex justify-between items-center">
-        <h1 className="text-[22px] font-semibold">{state}</h1>
+        <h1 className="text-[22px] font-semibold flex items-center gap-2">
+  {state}
+  <span
+    className={`text-white text-xs font-medium px-2 py-0.5 rounded-full ${
+      state === "To-Do"
+        ? "bg-blue-500"
+        : state === "In-Progress"
+        ? "bg-yellow-400"
+        : "bg-green-500"
+    }`}
+  >
+    {filtered.length}
+  </span>
+</h1>
         <button onClick={() => setOpen(true)}>
           <AddTaskIcon />
         </button>
       </div>
+
+      {filtered.length === 0 ? (
+        <div className="border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
+          <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
+          <p className="text-gray-500 text-[14px]">{description}</p>
+        </div>
+      ) : (
+        <div>
+          {filtered.map((task) => (
+            <Card
+              key={task.id}
+              title={task.title}
+              content={task.content}
+              type={task.type}
+              dueDate={task.dueDate}
+            />
+          ))}
+        </div>
+      )}
 
       {open && (
         <div className="absolute w-full h-full top-0 left-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
@@ -92,7 +132,10 @@ const Container = ({ state, heading, description }: Props) => {
             />
             <p className="text-red-500 text-sm">{errors.content?.message}</p>
 
-            <select {...register("type")} className="p-2 rounded border focus:outline-blue-400">
+            <select
+              {...register("type")}
+              className="p-2 rounded border focus:outline-blue-400"
+            >
               <option value="work">Work</option>
               <option value="school">School</option>
               <option value="self">Self</option>
@@ -127,20 +170,6 @@ const Container = ({ state, heading, description }: Props) => {
           </form>
         </div>
       )}
-
-      <div className="border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
-        <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
-        <p className="text-gray-500 text-[14px]">{description}</p>
-        {filtered.map((task) => (
-          <Card
-            key={task.id}
-            title={task.title}
-            content={task.content}
-            type={task.type}
-            dueDate={task.dueDate}
-          />
-        ))}
-      </div>
     </div>
   );
 };

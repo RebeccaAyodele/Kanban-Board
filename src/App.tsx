@@ -33,6 +33,7 @@ const App = () => {
   return (
     <div>
       <Header />
+      <div>
       <NavBar />
       <div className="ml-[16rem] mt-28">
         <h1 className="text-2xl ml-[2rem] mb-6 font-bold">Work Board</h1>
@@ -51,6 +52,7 @@ const App = () => {
             description="Task that are completed will appear here"
           />
         </div>
+      </div>
       </div>
     </div>
   );

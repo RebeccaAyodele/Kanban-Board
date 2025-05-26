@@ -20,7 +20,7 @@ const Card = ({ title, content, type, dueDate }: Props) => {
 
   return (
     <div
-      className="w-[292px] h-[300px] mb-4 bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer"
+      className="w-[292px] h-[260px] mb-4 mt-10 bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer"
       draggable
       onDragStart={() => {
         if (task?.title) {
