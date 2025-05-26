@@ -93,12 +93,12 @@ const Container = ({ state, heading, description }: Props) => {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="border-[#81C3FF] w-[98%] h-[275px] mt-[4rem] rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
+        <div className="border-[#81C3FF] w-[98%] h-[275px] mt-16 rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
           <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
           <p className="text-gray-500 text-[14px]">{description}</p>
         </div>
       ) : (
-        <div>
+        <div className="mt-16">
           {filtered.map((task) => (
             <Card
               key={task.id}
@@ -136,9 +136,9 @@ const Container = ({ state, heading, description }: Props) => {
               {...register("type")}
               className="p-2 rounded border focus:outline-blue-400"
             >
-              <option value="work">Work</option>
-              <option value="school">School</option>
-              <option value="self">Self</option>
+              <option value="Work">Work</option>
+              <option value="School">School</option>
+              <option value="Self">Self</option>
             </select>
             <p className="text-red-500 text-sm">{errors.type?.message}</p>
 

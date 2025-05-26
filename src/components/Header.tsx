@@ -16,7 +16,7 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search Tasks"
-            className="bg-blue-50 rounded-xl w-[37vw] h-[56px] placeholder:pl-24 placeholder:text-xl"
+            className="bg-blue-50 rounded-xl focus:outline-blue-200 w-[37vw] h-[56px] placeholder:pl-24 placeholder:text-xl"
           />
         </form>
         <AddListIcon />
