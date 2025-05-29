@@ -101,11 +101,11 @@ const Card = ({ title, content, type, dueDate }: Props) => {
           </div>
         </>
       ) : (
-        <>
+        <div className="relative h-full">
           <h1 className="text-xl font-semibold my-2">{title}</h1>
           <p className="text-gray-600">{content}</p>
 
-          <div className="flex justify-between items-center mt-4">
+          <div className="flex justify-between items-center mt-4 absolute mb-8 w-full bottom-0">
             <div className="flex items-center gap-2">
               <div className="bg-green-200 rounded-lg px-2 py-1 text-center">
                 <h3>{type}</h3>
@@ -126,7 +126,7 @@ const Card = ({ title, content, type, dueDate }: Props) => {
               <DragIcon />
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

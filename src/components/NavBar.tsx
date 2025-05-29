@@ -1,9 +1,10 @@
 import { DashBoardIcon, Logout, MyBoardsIcon, Notifications, ReportsIcon, Settings, TeamsIcon } from "./Icons";
 
+
 const NavBar = () => {
   return (
     <div className="flex">
-      <div className= "md:fixed md:top-0 md:pt-[8rem] md:h-screen md:max-w-[15rem] md:border-r-2 md:border-gray-300 md:flex flex-col md:justify-between md:items-center sm:hidden">
+      <div className= "hidden md:fixed md:top-0 md:pt-[8rem] md:h-screen md:w-[15rem] md:border-r-2 md:border-gray-300 md:flex flex-col md:justify-between md:items-center">
         <ul>
           <div className="w-[13.5rem] hover:bg-primary-color hover:rounded-[1rem]">
             <li className="mb-4 flex ml-[2rem] gap-3 items-center h-14">
