@@ -9,9 +9,12 @@ type Props = {
   content: string;
   type: "Work" | "School" | "Self";
   dueDate: string;
+  highlight?: boolean;
 };
 
-const Card = ({ title, content, type, dueDate }: Props) => {
+
+
+const Card = ({ title, content, type, dueDate, highlight }: Props) => {
   const task = useStore((store) =>
     store.tasks.find((task) => task.title === title)
   );
@@ -45,8 +48,9 @@ const Card = ({ title, content, type, dueDate }: Props) => {
   };
 
   return (
-    <div
-      className="h-64 mb-8 bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer"
+    <div className={`h-64 mb-8 bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer transition-all ${
+        highlight ? "bg-yellow-100 border-2 border-yellow-400" : "bg-white"
+      }`}
       draggable
       onDragStart={() => {
         if (task?.title) {

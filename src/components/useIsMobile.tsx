@@ -5,7 +5,7 @@ const useIsMobile = (breakpoint: number = 800): boolean => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= breakpoint)
+      setIsMobile(window.innerWidth < breakpoint)
     };
 
     checkMobile()

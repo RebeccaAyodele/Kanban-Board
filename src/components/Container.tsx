@@ -44,11 +44,16 @@ const Container = ({ state, heading, description }: Props) => {
   const setDraggedTask = useStore((store) => store.setDraggedTask);
   const draggedTask = useStore((store) => store.draggedTask);
   const moveTask = useStore((store) => store.moveTask);
+  const searchQuery = useStore((state) => state.searchQuery);
 
-  const filtered = useMemo(
-    () => tasks.filter((task) => task.state === state),
-    [tasks, state]
-  );
+  // const filtered = useMemo(
+  //   () => tasks.filter((task) => task.state === state),
+  //   [tasks, state]
+  // );
+
+  const filtered = useMemo(() => {
+    return tasks.filter((task) => task.state === state);
+  }, [tasks, state]);
 
   const onSubmit = (data: FormProps) => {
     addTask(data.title, data.content, state, data.type, data.dueDate);
@@ -99,16 +104,28 @@ const Container = ({ state, heading, description }: Props) => {
         </div>
       ) : (
         <div className="mt-16">
-          {filtered.map((task) => (
+        {filtered.map((task) => {
+           const matchesSearch =
+           searchQuery.trim() !== "" &&
+           (task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+             task.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+             task.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+             task.dueDate.toLowerCase().includes(searchQuery.toLowerCase()));
+     
+    
+          return (
             <Card
+              id={task.id}
               key={task.id}
               title={task.title}
               content={task.content}
               type={task.type}
               dueDate={task.dueDate}
+              highlight={matchesSearch} // 👈 Pass the flag
             />
-          ))}
-        </div>
+          );
+        })}
+      </div>
       )}
 
       {open && (
