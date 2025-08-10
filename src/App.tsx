@@ -11,6 +11,8 @@ const App = () => {
 
   if (isMobile) {
     return (
+      <div>
+        <NavBar />
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to="/todo" />} />
@@ -28,6 +30,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+      </div>
     )
   }
   return (
@@ -35,7 +38,7 @@ const App = () => {
       <Header />
       <div className="flex ">
       <NavBar />
-      <div className="mt-28 w-full">
+      <div className="mt-28 w-full flex-1 md:pl-[18%]">
         <h1 className="text-2xl ml-[2rem] mb-6 font-bold">Work Board</h1>
         <div className="flex justify-around">
           <Container
