@@ -17,15 +17,10 @@ type StoreProps = {
     deleteTask: (title: string) => void
     editTask: (title: string, updatedData: Partial<Task>) => void
     draggedTask: string | null
-<<<<<<< Updated upstream
-    setDraggedTask: (title: string | null) => void
-    moveTask: (title: string, state: Task["state"]) => void
-=======
     setDraggedTask: (id: string | null) => void
     moveTask: (id: string, state: Task["state"]) => void
     searchQuery: string;
     setSearchQuery: (query: string) => void;
->>>>>>> Stashed changes
 }
 
 export const useStore = create<StoreProps>()(

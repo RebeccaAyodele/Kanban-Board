@@ -7,12 +7,9 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex">
-<<<<<<< Updated upstream
-      <div className= "hidden md:fixed md:top-0 md:pt-[8rem] md:h-screen md:w-[15rem] md:border-r-2 md:border-gray-300 md:flex flex-col md:justify-between md:items-center">
-=======
+    <div className="flex md:w-[15rem]">
       <button
-        className="md:hidden p-4 z-50 relative"
+        className="md:hidden p-4 z-50 absolute"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="space-y-1">
@@ -32,7 +29,6 @@ const NavBar = () => {
           <h1 className="text-2xl font-bold">TaskFlow</h1>
         </div>
 
->>>>>>> Stashed changes
         <ul>
           <div className="w-[13.5rem] hover:bg-primary-color hover:rounded-[1rem]">
             <li className="mb-4 flex ml-[2rem] gap-3 items-center h-14">

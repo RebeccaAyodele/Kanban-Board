@@ -121,7 +121,7 @@ const Container = ({ state, heading, description }: Props) => {
               content={task.content}
               type={task.type}
               dueDate={task.dueDate}
-              highlight={matchesSearch} // 👈 Pass the flag
+              highlight={matchesSearch}
             />
           );
         })}
