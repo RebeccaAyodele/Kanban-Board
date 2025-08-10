@@ -122,7 +122,7 @@ const Card = ({ title, content, type, dueDate, highlight }: Props) => {
               </div>
               <div
                 onClick={() => {
-                  if (task) deleteTask(task.title);
+                  if (task) deleteTask(task.id);
                 }}
               >
                 <DeleteIcon />

@@ -10,7 +10,7 @@ const schema = z.object({
   title: z.string().nonempty("Title is required"),
   content: z.string().nonempty("Description is required"),
   dueDate: z.string().nonempty("Due date is required"),
-  type: z.string().nonempty("Task type is required"),
+  type: z.enum(["Work", "School", "Self"], { required_error: "Task type is required" }),
 });
 
 type FormProps = z.infer<typeof schema>;
