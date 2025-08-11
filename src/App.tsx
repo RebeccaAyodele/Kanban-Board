@@ -3,6 +3,7 @@ import useIsMobile from "./components/useIsMobile";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import StatusSummary from "./components/StatusSummary";
 
 const App = () => {
   const isMobile = useIsMobile();
@@ -12,8 +13,9 @@ const App = () => {
   if (isMobile) {
     return (
       <div>
-        <NavBar />
       <Router>
+      <NavBar />
+        <StatusSummary />
         <Routes>
           <Route path="/" element={<Navigate to="/todo" />} />
           <Route
