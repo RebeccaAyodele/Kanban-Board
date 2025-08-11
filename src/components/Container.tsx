@@ -77,8 +77,8 @@ const Container = ({ state, heading, description }: Props) => {
         setIsDragOver(false)
       }}
     >
-      <div className="flex justify-between items-center">
-        <h1 className="text-[22px] font-semibold flex items-center gap-2">
+      <div className="flex sm:justify-between justify-end items-center">
+        <h1 className="text-[22px] font-semibold sm:flex hidden items-center gap-2">
   {state}
   <span
     className={`text-white text-xs font-medium px-2 py-0.5 rounded-full ${
