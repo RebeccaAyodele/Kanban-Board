@@ -63,7 +63,7 @@ const Container = ({ state, heading, description }: Props) => {
 
   return (
     <div
-      className={`min-h-[43rem] sm:w-[22rem] mx-4 bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] flex flex-col transition-all duration-200 md:mx-auto ${
+      className={`min-h-[43rem] sm:w-[22rem] mx-4 sm:bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] flex flex-col transition-all duration-200 md:mx-auto ${
         isDragOver ? "border-2 border-dotted border-[#81C3FF]" : ""
       }`}
       onDragOver={(e) => {

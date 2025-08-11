@@ -9,7 +9,7 @@ const Header = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();}
   return (
-    <div className="flex fixed top-0 w-full items-end mx-auto justify-between border-b-2 border-gray-300 bg-white px-4 py-4 font-poppins">
+    <div className="flex fixed  z-50 top-0 w-full items-end mx-auto justify-between border-b-2 border-gray-300 bg-white px-4 py-4 font-poppins">
       <hr></hr>
      
       <div className="flex w-[70%]">

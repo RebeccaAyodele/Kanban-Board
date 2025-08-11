@@ -1,8 +1,8 @@
 import { useStore } from "../store";
 import { useState } from "react";
 import profile from "../images/profile.jpg";
-import { DeleteIcon, DragIcon, EditIcon } from "./Icons";
-import { HiDotsVertical } from "react-icons/hi"; // for three-dot icon
+import { DeleteIcon, EditIcon } from "./Icons";
+import { HiDotsVertical } from "react-icons/hi";
 import useIsMobile from "./useIsMobile";
 
 type Props = {
@@ -51,7 +51,7 @@ const Card = ({ id, title, content, type, dueDate, highlight }: Props) => {
 
   return (
     <div
-      className={`h-64 mb-8 bg-white shadow-gray-400 rounded-xl drop-shadow-xl p-6 relative cursor-pointer transition-all z-10 ${
+      className={`min-h-64 bg-white sm:border-none border-blue-200 border-2 sm:shadow-gray-400 rounded-xl drop-shadow-xl p-6 flex flex-col cursor-pointer transition-all z-10 mb-8 ${
         highlight ? "bg-yellow-100 border-2 border-yellow-400" : "bg-white"
       }`}
       draggable
@@ -119,11 +119,11 @@ const Card = ({ id, title, content, type, dueDate, highlight }: Props) => {
           </div>
         </>
       ) : (
-        <div className="relative h-full">
+        <div className="relative h-full flex-grow">
           <h1 className="text-xl font-semibold my-2">{title}</h1>
           <p className="text-gray-600">{content}</p>
 
-          <div className="flex justify-between items-center mt-4 absolute mb-8 w-full bottom-0">
+          <div className="flex justify-between items-center w-full absolute bottom-0">
             <div className="flex items-center gap-2">
               <div className="bg-green-200 rounded-lg px-2 py-1 text-center">
                 <h3>{type}</h3>
@@ -139,7 +139,6 @@ const Card = ({ id, title, content, type, dueDate, highlight }: Props) => {
                 <div onClick={() => deleteTask(id)}>
                   <DeleteIcon />
                 </div>
-                <DragIcon />
               </div>
             )}
           </div>
