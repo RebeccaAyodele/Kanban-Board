@@ -14,6 +14,7 @@ const App = () => {
     return (
       <div>
       <Router>
+        <Header />
       <NavBar />
       <h1 className="text-2xl ml-[2rem] mb-6 font-bold">Work Board</h1>
         <StatusSummary />

@@ -105,7 +105,7 @@ export const SearchIcon = () => {
 export const AddListIcon = () => {
   return (
     <div>
-      <svg
+      <svg className="sm:w-14 w-11"
         width="54"
         height="54"
         viewBox="0 0 54 54"

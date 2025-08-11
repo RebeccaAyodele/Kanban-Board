@@ -11,27 +11,27 @@ const StatusSummary = () => {
   const completedCount = tasks.filter((t) => t.state === "Completed").length;
 
   const buttonClasses = (isActive: boolean, color: string) =>
-    `cursor-pointer px-3 py-1 rounded-lg font-semibold transition-colors ${
+    `cursor-pointer px-3 py-1 rounded-md font-semibold transition-colors ${
       isActive ? `${color} text-white` : `${color.replace("bg", "text")}`
     }`;
 
   return (
-    <div className="flex justify-around bg-white shadow p-3 sticky top-0 z-20">
+    <div className="flex justify-around mt-16">
       <span
         onClick={() => navigate("/todo")}
-        className={buttonClasses(location.pathname === "/todo", "bg-blue-500")}
+        className={buttonClasses(location.pathname === "/todo", "bg-blue-400 text-black/70")}
       >
         To-Do: {todoCount}
       </span>
       <span
         onClick={() => navigate("/in-progress")}
-        className={buttonClasses(location.pathname === "/in-progress", "bg-yellow-500")}
+        className={buttonClasses(location.pathname === "/in-progress", "bg-yellow-300 text-black/70")}
       >
         In-Progress: {inProgressCount}
       </span>
       <span
         onClick={() => navigate("/completed")}
-        className={buttonClasses(location.pathname === "/completed", "bg-green-500")}
+        className={buttonClasses(location.pathname === "/completed", "bg-green-300 text-black/70")}
       >
         Completed: {completedCount}
       </span>

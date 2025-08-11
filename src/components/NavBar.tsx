@@ -7,7 +7,7 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex fixed md:w-[15rem] z-50">
+    <div className="flex fixed md:w-[15rem] z-50 ">
       <button
         className="md:hidden p-4 z-50 absolute"
         onClick={() => setIsOpen(!isOpen)}

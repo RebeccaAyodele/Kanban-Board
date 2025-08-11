@@ -9,12 +9,12 @@ const Header = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();}
   return (
-    <div className="flex fixed  z-50 top-0 w-full items-end mx-auto justify-between border-b-2 border-gray-300 bg-white px-4 py-4 font-poppins">
+    <div className="flex fixed z-50 top-0 w-full items-end mx-auto sm:justify-between justify-end border-b-2 border-gray-300 bg-white px-4 py-4 font-poppins">
       <hr></hr>
      
-      <div className="flex w-[70%]">
+      <div className="flex sm:w-[70%]">
       <div className="flex">
-        <form onSubmit={handleSubmit} className="w-full relative">
+        <form onSubmit={handleSubmit} className="w-full sm:flex relative hidden">
           <SearchIcon />
           <input
             type="text"
@@ -26,9 +26,9 @@ const Header = () => {
         </form>
         <AddListIcon />
       </div>
-      <div className="flex justify-center items-center mx-20 gap-4">
-        <img src={profile} alt="Profile picture" />
-        <h2 className="text-[18px]">Rebecca Ayodele</h2>
+      <div className="flex justify-center items-center sm:mx-20 gap-4">
+        <img className="sm:w-14 w-10 sm:ml-0 ml-4" src={profile} alt="Profile picture" />
+        <h2 className="sm:flex text-[18px] hidden">Rebecca Ayodele</h2>
       </div>
       </div>
     </div>
