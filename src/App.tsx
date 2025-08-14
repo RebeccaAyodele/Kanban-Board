@@ -6,12 +6,11 @@ import Reports from "./components/pages/Reports";
 import Settings from "./components/pages/Settings";
 import Notifications from "./components/pages/Notifications";
 import Logout from "./components/pages/Logout";
-import Header from "./components/Header";
+
 
 const App = () => {
   return (
     <Router>
-      <Header />
       <NavBar />
       <Routes>
         {/* Default route */}

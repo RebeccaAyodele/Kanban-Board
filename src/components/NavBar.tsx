@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../images/Logo.jpg";
 
 const baseItem =
-  "flex items-center gap-3 h-14 w-[13.5rem] ml-[2rem] rounded-[1rem] text-xl transition-colors";
+  "flex items-center gap-3 h-14 w-[12rem] ml-[2rem] rounded-[1rem] text-xl transition-colors";
 
 const inactive = "text-gray-500 hover:bg-primary-color hover:text-black";
 const active = "bg-primary-color text-black";
@@ -15,7 +15,7 @@ const NavBar = () => {
   return (
     <div className="flex fixed top-0 left-0 md:w-[15rem] z-50">
       <button
-        className="md:hidden p-4 z-50 absolute"
+        className="md:hidden p-4 z-60 fixed top-4"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="space-y-1">
