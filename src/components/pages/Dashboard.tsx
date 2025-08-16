@@ -19,8 +19,7 @@ import {
 import {
   FaExclamationTriangle,
   FaCalendarAlt,
-  FaTasks,
-  FaChartBar,
+  FaTasks
 } from "react-icons/fa";
 
 const STATUS_COLORS = {
@@ -106,14 +105,14 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="p-4 bg-white min-h-screen sm:ml-72 text-gray-800">
-      <h2 className="text-2xl sm:text-3xl font-bold text-blue-600 mb-6 flex items-center justify-center gap-2">
-        <FaChartBar /> Dashboard
+    <div className="p-4 bg-white min-h-screen sm:ml-60 text-gray-800">
+      <h2 className="sm:text-3xl text-2xl font-bold mb-6 text-gray-700 items-center justify-center flex sm:static fixed h-[5rem] z-20 top-0 w-full sm:border-none border-b-2 border-gray-300 bg-white font-poppins">
+         Dashboard
       </h2>
 
       {/* Date Filter */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mb-6">
-        <label className="font-semibold">Filter by Date:</label>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 sm:mt-0 mt-14 mb-6">
+        <label className="font-bold">Filter by Date:</label>
         <input
           type="date"
           value={filterDate}

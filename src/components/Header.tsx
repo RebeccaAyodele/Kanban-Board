@@ -12,14 +12,14 @@ const Header = () => {
     <div className="flex fixed z-20 top-0 w-full items-end mx-auto sm:justify-between justify-end border-b-2 border-gray-300 bg-white p-4 font-poppins">
       <hr></hr>
      
-      <div className="flex sm:w-[70%]">
+      <div className="flex sm:w-[70%] h-full">
       <div className="flex">
-        <form onSubmit={handleSubmit} className="w-full sm:flex relative hidden">
+        <form onSubmit={handleSubmit} className="w-full sm:flex relative">
           <SearchIcon />
           <input
             type="text"
             placeholder="Search Tasks"
-            className="bg-blue-50 rounded-xl focus:outline-blue-200 w-[37vw] h-[56px] placeholder:pl-24 px-8 placeholder:text-xl"
+            className="bg-blue-50 rounded-xl sm:mt-0 mt-2 focus:outline-blue-200 w-[37vw] sm:h-[56px] h-[45px] mr-4 sm:placeholder:pl-24 px-8 sm:placeholder:text-xl"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

@@ -71,11 +71,11 @@ const CalendarView = () => {
 
   return (
     <div className="p-2 sm:p-4 max-w-screen max-w-full sm:ml-64">
-      <h2 className="sm:text-2xl sm:mb-4 text-center sm:text-left text-xl ml-[2rem] mb-6 font-bold">
+      <h2 className="sm:text-3xl text-2xl font-bold mb-6 text-gray-700 items-center justify-center flex sm:static fixed h-[5rem] z-20 top-0 w-full sm:border-none border-b-2 border-gray-300 bg-white font-poppins">
         Task Calendar
       </h2>
 
-      <div className="overflow-auto w-full">
+      <div className="overflow-auto w-full sm:mt-0 mt-24">
         <Calendar
           localizer={localizer}
           events={events}
