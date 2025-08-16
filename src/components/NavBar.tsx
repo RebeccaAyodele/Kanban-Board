@@ -3,9 +3,9 @@ import {
   Logout,
   MyBoardsIcon,
   Notifications,
-  ReportsIcon,
+  // ReportsIcon,
   Settings,
-  // TeamsIcon,
+  TeamsIcon,
 } from "./Icons";
 import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
@@ -99,11 +99,11 @@ const NavBar = () => {
               }
               onClick={() => setIsOpen(false)}
             >
-              <FaRegCalendarAlt className="text-xl" />
+              <FaRegCalendarAlt className="text-2xl ml-1" />
               <span>Calendar</span>
             </NavLink>
           </li>
-          {/* <li className="mb-4">
+          <li className="mb-4">
             <NavLink
               to="/teams"
               className={({ isActive }) =>
@@ -114,8 +114,8 @@ const NavBar = () => {
               <TeamsIcon />
               <span>Teams</span>
             </NavLink>
-          </li> */}
-          <li className="mb-4">
+          </li>
+          {/* <li className="mb-4">
             <NavLink
               to="/reports"
               className={({ isActive }) =>
@@ -126,7 +126,7 @@ const NavBar = () => {
               <ReportsIcon />
               <span>Reports</span>
             </NavLink>
-          </li>
+          </li> */}
         </ul>
 
         {/* Bottom section */}

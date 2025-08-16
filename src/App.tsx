@@ -2,11 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Boards from "./components/pages/Boards";
 import Dashboard from "./components/pages/Dashboard";
-import Reports from "./components/pages/Reports";
+// import Reports from "./components/pages/Reports";
 import Settings from "./components/pages/Settings";
 import Notifications from "./components/pages/Notifications";
 import Logout from "./components/pages/Logout";
 import CalendarView from "./components/pages/CalenderView";
+import Teams from "./components/pages/Teams";
 
 
 const App = () => {
@@ -17,8 +18,8 @@ const App = () => {
         {/* Default route */}
         <Route path="*" element={<Boards />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/reports" element={<Reports />} />
         <Route path="/calendar" element={<CalendarView />} />
+        <Route path="/teams" element={<Teams />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/logout" element={<Logout />} />
