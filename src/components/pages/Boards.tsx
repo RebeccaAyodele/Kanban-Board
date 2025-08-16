@@ -7,7 +7,7 @@ import StatusSummary from "../StatusSummary";
 const Boards = () => {
   const isMobile = useIsMobile();
 
-  if (isMobile === null) return null; // still keep loading guard
+  if (isMobile === null) return null; 
 
   return (
     <div>
@@ -17,7 +17,7 @@ const Boards = () => {
       {isMobile ? (
         // MOBILE VIEW
         <div>
-          <h1 className="text-2xl ml-[2rem] mb-6 font-bold">Work Board</h1>
+          <h1 className="text-2xl ml-[2rem] sm:mb-6 mb-4 font-bold">Work Board</h1>
           <StatusSummary />
           <Routes>
             <Route
