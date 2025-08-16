@@ -10,7 +10,9 @@ const schema = z.object({
   title: z.string().nonempty("Title is required"),
   content: z.string().nonempty("Description is required"),
   dueDate: z.string().nonempty("Due date is required"),
-  type: z.enum(["Work", "School", "Self"], { required_error: "Task type is required" }),
+  type: z.enum(["Work", "School", "Self"], {
+    required_error: "Task type is required",
+  }),
 });
 
 type FormProps = z.infer<typeof schema>;
@@ -46,14 +48,13 @@ const Container = ({ state, heading, description }: Props) => {
   const moveTask = useStore((store) => store.moveTask);
   const searchQuery = useStore((state) => state.searchQuery);
 
-  
-
   const filtered = useMemo(() => {
     return tasks.filter((task) => task.state === state);
   }, [tasks, state]);
 
   const onSubmit = (data: FormProps) => {
-    addTask(data.title, data.content, state, data.type, data.dueDate);
+    const isoDate = new Date(data.dueDate).toISOString();
+    addTask(data.title, data.content, state, data.type, isoDate);
     reset();
     setOpen(false);
   };
@@ -65,30 +66,30 @@ const Container = ({ state, heading, description }: Props) => {
       }`}
       onDragOver={(e) => {
         e.preventDefault();
-        setIsDragOver(true)
+        setIsDragOver(true);
       }}
       onDragLeave={() => setIsDragOver(false)}
       onDrop={() => {
         if (draggedTask) moveTask(draggedTask, state);
         setDraggedTask(null);
-        setIsDragOver(false)
+        setIsDragOver(false);
       }}
     >
       <div className="flex sm:justify-between justify-end items-center">
         <h1 className="text-[22px] font-semibold sm:flex hidden items-center gap-2">
-  {state}
-  <span
-    className={`text-white text-xs font-medium px-2 py-0.5 rounded-full ${
-      state === "To-Do"
-        ? "bg-blue-500"
-        : state === "In-Progress"
-        ? "bg-yellow-400"
-        : "bg-green-500"
-    }`}
-  >
-    {filtered.length}
-  </span>
-</h1>
+          {state}
+          <span
+            className={`text-white text-xs font-medium px-2 py-0.5 rounded-full ${
+              state === "To-Do"
+                ? "bg-blue-500"
+                : state === "In-Progress"
+                ? "bg-yellow-400"
+                : "bg-green-500"
+            }`}
+          >
+            {filtered.length}
+          </span>
+        </h1>
         <button onClick={() => setOpen(true)}>
           <AddTaskIcon />
         </button>
@@ -101,28 +102,29 @@ const Container = ({ state, heading, description }: Props) => {
         </div>
       ) : (
         <div className="mt-16">
-        {filtered.map((task) => {
-           const matchesSearch =
-           searchQuery.trim() !== "" &&
-           (task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             task.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             task.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             task.dueDate.toLowerCase().includes(searchQuery.toLowerCase()));
-     
-    
-          return (
-            <Card
-              id={task.id}
-              key={task.id}
-              title={task.title}
-              content={task.content}
-              type={task.type}
-              dueDate={task.dueDate}
-              highlight={matchesSearch}
-            />
-          );
-        })}
-      </div>
+          {filtered.map((task) => {
+            const matchesSearch =
+              searchQuery.trim() !== "" &&
+              (task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                task.content
+                  .toLowerCase()
+                  .includes(searchQuery.toLowerCase()) ||
+                task.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                task.dueDate.toLowerCase().includes(searchQuery.toLowerCase()));
+
+            return (
+              <Card
+                id={task.id}
+                key={task.id}
+                title={task.title}
+                content={task.content}
+                type={task.type}
+                dueDate={task.dueDate}
+                highlight={matchesSearch}
+              />
+            );
+          })}
+        </div>
       )}
 
       {open && (
@@ -157,7 +159,7 @@ const Container = ({ state, heading, description }: Props) => {
             <p className="text-red-500 text-sm">{errors.type?.message}</p>
 
             <input
-              type="date"
+              type="datetime-local"
               {...register("dueDate")}
               className="p-2 rounded border focus:outline-blue-400"
             />

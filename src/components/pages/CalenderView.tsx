@@ -17,7 +17,6 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-// 👇 define allowed views manually
 type CalendarViewType = "month" | "week" | "work_week" | "day" | "agenda";
 
 const CalendarView = () => {
@@ -28,13 +27,12 @@ const CalendarView = () => {
   const events = useMemo(
     () =>
       tasks.map((task) => {
-        const start = new Date(task.dueDate);
-        const end = new Date(start.getTime() + 60 * 60 * 1000);
+        const due = new Date(task.dueDate);
         return {
           title: task.title,
           content: task.content,
-          start,
-          end,
+          start: due,
+          end: due,
           allDay: false,
         };
       }),

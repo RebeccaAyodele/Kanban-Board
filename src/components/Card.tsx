@@ -24,19 +24,23 @@ const Card = ({ id, title, content, type, dueDate, highlight }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedContent, setEditedContent] = useState(content);
-  const [editedType, setEditedType] = useState<"Work" | "School" | "Self">(type);
-  const [editedDueDate, setEditedDueDate] = useState(dueDate);
+  const [editedType, setEditedType] = useState<"Work" | "School" | "Self">(
+    type
+  );
+  const [editedDueDate, setEditedDueDate] = useState(new Date(dueDate).toISOString().slice(0, 16));
   const [showMenu, setShowMenu] = useState(false);
 
   const isMobile = useIsMobile();
 
   const handleSave = () => {
     if (!task) return;
+    const isoDate = new Date(editedDueDate).toISOString();
+    
     editTask(task.id, {
       title: editedTitle,
       content: editedContent,
       type: editedType,
-      dueDate: editedDueDate,
+      dueDate: isoDate,
     });
     setIsEditing(false);
   };
@@ -99,7 +103,7 @@ const Card = ({ id, title, content, type, dueDate, highlight }: Props) => {
           </select>
           <input
             className="w-full mb-2 border border-gray-300 rounded p-1"
-            type="date"
+            type="datetime-local"
             value={editedDueDate}
             onChange={(e) => setEditedDueDate(e.target.value)}
           />
@@ -128,7 +132,12 @@ const Card = ({ id, title, content, type, dueDate, highlight }: Props) => {
               <div className="bg-green-200 rounded-lg px-2 py-1 text-center">
                 <h3>{type}</h3>
               </div>
-              <p className="text-[9px] font-thin text-gray-600">{dueDate}</p>
+              <p className="text-[9px] font-thin text-gray-600">
+                {new Date(dueDate).toLocaleString([], {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })}
+              </p>
             </div>
 
             {!isMobile && (
