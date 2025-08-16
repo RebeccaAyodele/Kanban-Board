@@ -1,7 +1,15 @@
-import { DashBoardIcon, Logout, MyBoardsIcon, Notifications, ReportsIcon, Settings, TeamsIcon } from "./Icons";
+import {
+  DashBoardIcon,
+  Logout,
+  MyBoardsIcon,
+  Notifications,
+  ReportsIcon,
+  Settings,
+  // TeamsIcon,
+} from "./Icons";
 import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa"; // React Icons
+import { FaBars, FaTimes, FaRegCalendarAlt } from "react-icons/fa"; // React Icons
 import logo from "../images/Logo.jpg";
 
 const baseItem =
@@ -45,7 +53,9 @@ const NavBar = () => {
       <div
         ref={menuRef}
         className={`fixed top-0 left-0 pt-4 h-screen w-[15rem] bg-white border-r-2 border-gray-300 flex flex-col justify-between items-center transform transition-transform duration-300
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static md:flex`}
+        ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0 md:static md:flex`}
       >
         {/* Logo */}
         <div className="flex justify-center items-center border-b-2 border-gray-300 w-full p-4">
@@ -67,6 +77,7 @@ const NavBar = () => {
               <span>Dashboard</span>
             </NavLink>
           </li>
+          
           <li className="mb-4">
             <NavLink
               to="/"
@@ -82,6 +93,18 @@ const NavBar = () => {
           </li>
           <li className="mb-4">
             <NavLink
+              to="/calendar"
+              className={({ isActive }) =>
+                `${baseItem} ${isActive ? active : inactive}`
+              }
+              onClick={() => setIsOpen(false)}
+            >
+              <FaRegCalendarAlt className="text-xl" />
+              <span>Calendar</span>
+            </NavLink>
+          </li>
+          {/* <li className="mb-4">
+            <NavLink
               to="/teams"
               className={({ isActive }) =>
                 `${baseItem} ${isActive ? active : inactive}`
@@ -91,7 +114,7 @@ const NavBar = () => {
               <TeamsIcon />
               <span>Teams</span>
             </NavLink>
-          </li>
+          </li> */}
           <li className="mb-4">
             <NavLink
               to="/reports"
@@ -112,7 +135,9 @@ const NavBar = () => {
             <NavLink
               to="/settings"
               className={({ isActive }) =>
-                `ml-[2.5rem] ${baseItem.replace("ml-[2rem]", "")} ${isActive ? active : inactive}`
+                `ml-[2.5rem] ${baseItem.replace("ml-[2rem]", "")} ${
+                  isActive ? active : inactive
+                }`
               }
               onClick={() => setIsOpen(false)}
             >
@@ -124,7 +149,9 @@ const NavBar = () => {
             <NavLink
               to="/notifications"
               className={({ isActive }) =>
-                `ml-[2.5rem] ${baseItem.replace("ml-[2rem]", "")} ${isActive ? active : inactive}`
+                `ml-[2.5rem] ${baseItem.replace("ml-[2rem]", "")} ${
+                  isActive ? active : inactive
+                }`
               }
               onClick={() => setIsOpen(false)}
             >
@@ -136,7 +163,9 @@ const NavBar = () => {
             <NavLink
               to="/logout"
               className={({ isActive }) =>
-                `ml-[2.5rem] ${baseItem.replace("ml-[2rem]", "")} ${isActive ? active : inactive}`
+                `ml-[2.5rem] ${baseItem.replace("ml-[2rem]", "")} ${
+                  isActive ? active : inactive
+                }`
               }
               onClick={() => setIsOpen(false)}
             >

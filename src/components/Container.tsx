@@ -46,10 +46,7 @@ const Container = ({ state, heading, description }: Props) => {
   const moveTask = useStore((store) => store.moveTask);
   const searchQuery = useStore((state) => state.searchQuery);
 
-  // const filtered = useMemo(
-  //   () => tasks.filter((task) => task.state === state),
-  //   [tasks, state]
-  // );
+  
 
   const filtered = useMemo(() => {
     return tasks.filter((task) => task.state === state);

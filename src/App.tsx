@@ -6,6 +6,7 @@ import Reports from "./components/pages/Reports";
 import Settings from "./components/pages/Settings";
 import Notifications from "./components/pages/Notifications";
 import Logout from "./components/pages/Logout";
+import CalendarView from "./components/pages/CalenderView";
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="*" element={<Boards />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/reports" element={<Reports />} />
+        <Route path="/calendar" element={<CalendarView />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/logout" element={<Logout />} />
