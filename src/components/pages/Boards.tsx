@@ -2,8 +2,8 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import useIsMobile from "../useIsMobile";
 import Container from "../Container";
 import Header from "../Header";
-import StatusSummary from "../StatusSummary";
 import { useState } from "react";
+import StatusSummary from "../StatusSummary";
 
 const Boards = () => {
   const isMobile = useIsMobile();
