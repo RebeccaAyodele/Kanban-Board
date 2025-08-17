@@ -9,7 +9,7 @@ const Notifications = () => {
         support is implemented. Until then, you can continue exploring the main
         page.
       </p>
-      <Link to="/teams">
+      <Link to="/">
         <button className="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white hover:bg-blue-600 font-semibold">
           Go to Boards
         </button>

@@ -21,9 +21,11 @@ type Props = {
   state: "To-Do" | "In-Progress" | "Completed";
   heading?: string;
   description: string;
+  open: boolean;
+  setOpen: (val:boolean) => void;
 };
 
-const Container = ({ state, heading, description }: Props) => {
+const Container = ({ state, heading, description, open, setOpen }: Props) => {
   const {
     register,
     handleSubmit,
@@ -39,7 +41,7 @@ const Container = ({ state, heading, description }: Props) => {
     resolver: zodResolver(schema),
   });
 
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
   const tasks = useStore((store) => store.tasks);
   const addTask = useStore((store) => store.addTask);
@@ -61,7 +63,7 @@ const Container = ({ state, heading, description }: Props) => {
 
   return (
     <div
-      className={`min-h-[43rem] sm:w-[22rem] mx-4 sm:bg-primary-color rounded-[1.4rem] pt-[2.6rem] px-[2rem] flex flex-col transition-all duration-200 md:mx-auto ${
+      className={`min-h-[43rem] sm:w-[22rem] sm:mx-4 sm:bg-primary-color rounded-[1.4rem] sm:pt-[2.6rem] px-[2rem] flex flex-col transition-all duration-200 md:mx-auto ${
         isDragOver ? "border-2 border-dotted border-[#81C3FF]" : ""
       }`}
       onDragOver={(e) => {
@@ -90,7 +92,7 @@ const Container = ({ state, heading, description }: Props) => {
             {filtered.length}
           </span>
         </h1>
-        <button onClick={() => setOpen(true)}>
+        <button onClick={() => setOpen(true)} className="sm:flex hidden">
           <AddTaskIcon />
         </button>
       </div>

@@ -2,7 +2,11 @@ import { SearchIcon, AddListIcon } from "./Icons";
 import profile from "../images/profile.jpg"
 import { useStore } from "../store";
 
-const Header = () => {
+type HeaderProps = {
+  onAddClick: () => void;
+};
+
+const Header = ({ onAddClick }: HeaderProps) => {
   const setSearchQuery = useStore((state) => state.setSearchQuery);
   const searchQuery = useStore((state) => state.searchQuery);
 
@@ -24,7 +28,7 @@ const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </form>
-        <AddListIcon />
+        <button onClick={onAddClick} className="cursor-pointer"><AddListIcon /></button>
       </div>
       <div className="flex justify-center items-center sm:mx-20 gap-4">
         <img className="sm:w-14 w-10 sm:ml-0 ml-4" src={profile} alt="Profile picture" />

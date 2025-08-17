@@ -1,21 +1,40 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import useIsMobile from "../useIsMobile";
 import Container from "../Container";
 import Header from "../Header";
 import StatusSummary from "../StatusSummary";
+import { useState } from "react";
 
 const Boards = () => {
   const isMobile = useIsMobile();
+  const location = useLocation();
+  const [openModalState, setOpenModalState] = useState<"To-Do" | "In-Progress" | "Completed" | null>(null);
 
-  if (isMobile === null) return null; 
+  if (isMobile === null) return null;
+
+  // This will be triggered by the header button
+  const handleHeaderAddClick = () => {
+    if (isMobile) {
+      // mobile → check the current route
+      if (location.pathname.includes("in-progress")) {
+        setOpenModalState("In-Progress");
+      } else if (location.pathname.includes("completed")) {
+        setOpenModalState("Completed");
+      } else {
+        setOpenModalState("To-Do");
+      }
+    } else {
+      // desktop → always add to To-Do
+      setOpenModalState("To-Do");
+    }
+  };
 
   return (
     <div>
-      {/* Always show the header */}
-      <Header />
+      {/* Pass the click handler to Header */}
+      <Header onAddClick={handleHeaderAddClick} />
 
       {isMobile ? (
-        // MOBILE VIEW
         <div>
           <h1 className="text-2xl ml-[2rem] sm:mb-6 mb-4 font-bold">Work Board</h1>
           <StatusSummary />
@@ -27,6 +46,8 @@ const Boards = () => {
                   state="To-Do"
                   heading="Let's begin!"
                   description="Tasks to be done"
+                  open={openModalState === "To-Do"}
+                  setOpen={(val) => setOpenModalState(val ? "To-Do" : null)}
                 />
               }
             />
@@ -37,6 +58,8 @@ const Boards = () => {
                   state="In-Progress"
                   heading="Work in Progress"
                   description="Tasks you're working on"
+                  open={openModalState === "In-Progress"}
+                  setOpen={(val) => setOpenModalState(val ? "In-Progress" : null)}
                 />
               }
             />
@@ -47,15 +70,15 @@ const Boards = () => {
                   state="Completed"
                   heading="Well done!"
                   description="Tasks you've finished"
+                  open={openModalState === "Completed"}
+                  setOpen={(val) => setOpenModalState(val ? "Completed" : null)}
                 />
               }
             />
-            {/* Default fallback for mobile */}
             <Route path="*" element={<Navigate to="/todo" replace />} />
           </Routes>
         </div>
       ) : (
-        // DESKTOP VIEW
         <div className="mt-28 w-full flex-1 md:pl-[18%]">
           <h1 className="text-2xl ml-[2rem] mb-6 font-bold">Work Board</h1>
           <div className="flex justify-around">
@@ -63,14 +86,20 @@ const Boards = () => {
               state="To-Do"
               heading="No task yet"
               description="Add a new task to get started"
+              open={openModalState === "To-Do"}
+              setOpen={(val) => setOpenModalState(val ? "To-Do" : null)}
             />
             <Container
               state="In-Progress"
               description="Start working on a task to move it here"
+              open={openModalState === "In-Progress"}
+              setOpen={(val) => setOpenModalState(val ? "In-Progress" : null)}
             />
             <Container
               state="Completed"
               description="Tasks that are completed will appear here"
+              open={openModalState === "Completed"}
+              setOpen={(val) => setOpenModalState(val ? "Completed" : null)}
             />
           </div>
         </div>
