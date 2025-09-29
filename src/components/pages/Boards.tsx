@@ -12,10 +12,8 @@ const Boards = () => {
 
   if (isMobile === null) return null;
 
-  // This will be triggered by the header button
   const handleHeaderAddClick = () => {
     if (isMobile) {
-      // mobile → check the current route
       if (location.pathname.includes("in-progress")) {
         setOpenModalState("In-Progress");
       } else if (location.pathname.includes("completed")) {
@@ -24,14 +22,12 @@ const Boards = () => {
         setOpenModalState("To-Do");
       }
     } else {
-      // desktop → always add to To-Do
       setOpenModalState("To-Do");
     }
   };
 
   return (
     <div>
-      {/* Pass the click handler to Header */}
       <Header onAddClick={handleHeaderAddClick} />
 
       {isMobile ? (

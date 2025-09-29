@@ -63,7 +63,7 @@ const Container = ({ state, heading, description, open, setOpen }: Props) => {
 
   return (
     <div
-      className={`min-h-[43rem] sm:w-[22rem] sm:mx-4 sm:bg-primary-color rounded-[1.4rem] sm:pt-[2.6rem] px-[2rem] flex flex-col transition-all duration-200 md:mx-auto ${
+      className={`min-h-[43rem] md:w-[22rem] w-full sm:mx-4 sm:bg-primary-color rounded-[1.4rem] sm:pt-[2.6rem] px-[2rem] flex flex-col transition-all duration-200 md:mx-auto ${
         isDragOver ? "border-2 border-dotted border-[#81C3FF]" : ""
       }`}
       onDragOver={(e) => {
@@ -98,7 +98,7 @@ const Container = ({ state, heading, description, open, setOpen }: Props) => {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="border-[#81C3FF] w-[98%] h-[275px] mt-16 rounded-3xl border-dotted border-2 flex flex-col justify-center items-center">
+        <div className="border-[#81C3FF] w-[98%] h-[275px] mt-16 rounded-3xl border-dotted border-2 flex flex-col mx-auto px-4 text-center justify-center items-center">
           <h1 className="font-bold text-gray-700 text-[14px]">{heading}</h1>
           <p className="text-gray-500 text-[14px]">{description}</p>
         </div>
@@ -130,11 +130,11 @@ const Container = ({ state, heading, description, open, setOpen }: Props) => {
       )}
 
       {open && (
-        <div className="absolute w-full h-full top-0 left-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+        <div className="fixed w-full h-screen top-0 left-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
           <form
             onSubmit={handleSubmit(onSubmit)}
             noValidate
-            className="bg-white shadow-lg p-6 w-[20rem] rounded-[1.5rem] flex flex-col gap-3"
+            className="bg-white shadow-lg p-6 w-[20rem] rounded-[1.5rem] flex flex-col gap-3 text-sm"
           >
             <input
               {...register("title")}

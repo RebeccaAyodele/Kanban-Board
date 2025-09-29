@@ -13,7 +13,7 @@ const Header = ({ onAddClick }: HeaderProps) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();}
   return (
-    <div className="flex fixed z-20 top-0 w-full items-end mx-auto sm:justify-between justify-end border-b-2 border-gray-300 bg-white p-4 font-poppins">
+    <div className="flex fixed z-20 top-0 w-full items-end mx-auto sm:justify-between justify-end border-b-2 border-gray-300 bg-white p-3 font-poppins">
       <hr></hr>
      
       <div className="flex sm:w-[70%] h-full">
@@ -23,7 +23,7 @@ const Header = ({ onAddClick }: HeaderProps) => {
           <input
             type="text"
             placeholder="Search Tasks"
-            className="bg-blue-50 rounded-xl sm:mt-0 mt-2 focus:outline-blue-200 w-[37vw] sm:h-[56px] h-[45px] mr-4 sm:placeholder:pl-24 px-8 sm:placeholder:text-xl"
+            className="bg-blue-50 rounded-xl sm:mt-0 mt-2 focus:outline-blue-200 w-[37vw] sm:h-[56px] h-[45px] mr-4 sm:placeholder:pl-24 px-8 md:placeholder:text-xl placeholder:text-sm"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -32,7 +32,7 @@ const Header = ({ onAddClick }: HeaderProps) => {
       </div>
       <div className="flex justify-center items-center sm:mx-20 gap-4">
         <img className="sm:w-14 w-10 sm:ml-0 ml-4" src={profile} alt="Profile picture" />
-        <h2 className="sm:flex text-[18px] hidden">Rebecca Ayodele</h2>
+        <h2 className="sm:flex md:text-[18px] text-base hidden text-nowrap">Rebecca Ayodele</h2>
       </div>
       </div>
     </div>
