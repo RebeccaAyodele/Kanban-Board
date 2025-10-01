@@ -55,7 +55,7 @@ const Card = ({ id, title, content, type, dueDate, highlight }: Props) => {
 
   return (
     <div
-      className={`min-h-64 bg-white sm:border-none border-blue-200 border-2 sm:shadow-gray-400 rounded-xl sm:drop-shadow-xl p-6 flex flex-col cursor-pointer transition-all z-10 sm:mb-8 mb-4 ${
+      className={`min-h-64 bg-white sm:border-none border-blue-200 border-2 text-base sm:shadow-gray-400 rounded-xl sm:drop-shadow-xl p-6 flex flex-col cursor-pointer transition-all z-10 sm:mb-8 mb-4 ${
         highlight ? "bg-yellow-100 border-2 border-yellow-400" : "bg-white"
       }`}
       draggable

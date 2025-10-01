@@ -112,7 +112,7 @@ export default function Dashboard() {
 
       {/* Date Filter */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 sm:mt-0 mt-14 mb-6">
-        <label className="font-bold">Filter by Date:</label>
+        <label className="font-bold text-base">Filter by Date:</label>
         <input
           type="date"
           value={filterDate}
@@ -133,7 +133,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
         {overdue.length > 0 && (
           <div className="bg-red-100 border border-red-400 p-4 rounded-lg">
-            <h3 className="font-bold text-red-600 mb-2 flex items-center gap-2">
+            <h3 className="font-bold text-red-600 mb-2 text-base flex items-center gap-2">
               <FaExclamationTriangle /> Overdue Tasks
             </h3>
             <ul className="list-disc pl-5 space-y-1 text-sm sm:text-base">
@@ -156,7 +156,7 @@ export default function Dashboard() {
 
         {upcoming.length > 0 && (
           <div className="bg-blue-50 border border-blue-300 p-4 rounded-lg">
-            <h3 className="font-bold text-blue-600 mb-2 flex items-center gap-2">
+            <h3 className="font-bold text-blue-600 mb-2 text-base flex items-center gap-2">
               <FaCalendarAlt /> Upcoming Deadlines
             </h3>
             <ul className="list-disc pl-5 space-y-1 text-sm sm:text-base">
@@ -183,7 +183,7 @@ export default function Dashboard() {
         {/* Pie Chart */}
         <div className="bg-blue-50 p-4 rounded-lg shadow flex flex-col sm:flex-row gap-6">
           <div className="flex-1">
-            <h3 className="font-bold mb-4 text-blue-700 flex items-center gap-2">
+            <h3 className="font-bold mb-4 text-blue-700 text-base flex items-center gap-2">
               <FaTasks /> Task Distribution
             </h3>
             <ResponsiveContainer width="100%" height={250}>
@@ -224,7 +224,7 @@ export default function Dashboard() {
 
         {/* Bar Chart */}
         <div className="bg-blue-50 p-4 rounded-lg shadow">
-          <h3 className="font-bold mb-4 text-blue-700">Task Counts</h3>
+          <h3 className="font-bold mb-4 text-blue-700 text-base">Task Counts</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#cbd5e1" />
@@ -248,7 +248,7 @@ export default function Dashboard() {
 
         {/* Top Categories */}
         <div className="bg-blue-50 p-4 rounded-lg shadow">
-          <h3 className="font-bold mb-4 text-blue-700">Top Categories</h3>
+          <h3 className="font-bold mb-4 text-blue-700 text-base">Top Categories</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={categoryCounts}>
               <CartesianGrid strokeDasharray="3 3" stroke="#cbd5e1" />
@@ -271,7 +271,7 @@ export default function Dashboard() {
 
         {/* Weekly Trend */}
         <div className="bg-blue-50 p-4 rounded-lg shadow">
-          <h3 className="font-bold mb-4 text-blue-700">
+          <h3 className="font-bold mb-4 text-blue-700 text-base">
             Weekly Tasks Due Trend
           </h3>
           <ResponsiveContainer width="100%" height={250}>

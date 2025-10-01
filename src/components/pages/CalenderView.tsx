@@ -70,7 +70,7 @@ const CalendarView = () => {
   );
 
   return (
-    <div className="p-2 sm:p-4 max-w-screen max-w-full sm:ml-64">
+    <div className="p-2 sm:p-4 max-w-screen max-w-full sm:ml-64 text-base">
       <h2 className="sm:text-3xl text-2xl font-bold mb-6 text-gray-700 items-center justify-center flex sm:static fixed h-[5rem] z-20 top-0 w-full sm:border-none border-b-2 border-gray-300 bg-white font-poppins">
         Task Calendar
       </h2>
